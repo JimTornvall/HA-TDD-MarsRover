@@ -1,1 +1,40 @@
-# HA-TDD-MarsRover
+= HA-TDD-MarsRover
+:Author: Jim Törnvall
+:Year: 2024
+:School: Åland University of Applied Sciences
+:Course: Test Driven Development
+
+== Info
+This is a simple TDD project created for {Course} at {School} by {Author} in {Year}.
+
+== Setup
+[source,shell]
+----
+go mod tidy
+----
+
+== Run
+[source,shell]
+----
+go run .
+----
+
+== Test
+
+[source,shell]
+----
+// Run all tests
+ go test -v ./...
+
+// Run all tests with coverage
+go test -cover -v ./...
+----
+
+== Coverage
+[source,shell]
+----
+go test -coverprofile="coverage.out" ./...
+go tool cover -html="coverage.out"
+----
+== TODO
+
