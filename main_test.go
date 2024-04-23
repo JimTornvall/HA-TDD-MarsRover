@@ -221,3 +221,25 @@ func TestRunEdgeDetectionWest(t *testing.T) {
 	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
 	assert.Nil(t, err, "Expected error to be nil")
 }
+
+func TestRunObstacleDetection(t *testing.T) {
+	// Arrange
+	x := 3
+	y := 3
+	dir, _ := rover.NewDirection('N')
+
+	expectedPos := rover.NewPosition(3, 2)
+	var expectedDir rover.Direction = 'N'
+	r, _ := rover.NewRover(x, y, dir)
+	r.Grid.SetObstacle(3, 1)
+
+	commands := "FF"
+
+	// Act
+	err := r.Run(commands)
+
+	// Assert
+	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+	assert.NotNil(t, err, "Expected error to be not nil")
+}

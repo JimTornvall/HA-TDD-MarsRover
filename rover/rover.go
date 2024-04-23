@@ -3,7 +3,7 @@ package rover
 type Rover struct {
 	pos  Position
 	dir  Direction
-	grid Grid
+	Grid Grid
 }
 
 func NewRover(x int, y int, dir Direction) (Rover, error) {
@@ -41,7 +41,6 @@ func (rover *Rover) MoveForward() error {
 }
 
 func (rover *Rover) MoveBackward() error {
-	// TODO: should return error if rover found an obstacle
 	var err error
 	d := rover.GetDirection()
 	switch d {
