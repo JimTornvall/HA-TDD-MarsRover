@@ -37,4 +37,10 @@ go test -coverprofile="coverage.out" ./...
 go tool cover -html="coverage.out"
 ----
 == TODO
+- [x] En rover får vid initiering startkoordinater (x,y) och riktningen (N,S,E,W) den är vänd.
+- [x] Implementera kommandon som flyttar rovern framåt/bakåt (“F”/”B”).
+- [ ] Implementera kommandon som vrider rovern åt vänster/höger (“L”/”R”).
+- [ ] Rovern får en rad tecken med kommandon, till exempel “FFRBLB”
+- [ ] Hantera wrappning längs kanterna. Vi använder oss av 2D-koordinater, men mars är ett klot. Hur sker övergången vid polerna och nollmeridianen?
+- [ ] (Bonus) Implementera hinderdetektering före varje flytt till en ny ruta. Om en given sekvens av kommandon stöter på ett hinder, flytta rovern tillbaka till den sista möjliga punkten före hindret, avbryt sekvensen och rapporterar hindret.
 
