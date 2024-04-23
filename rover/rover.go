@@ -26,13 +26,13 @@ func (r *Rover) MoveForward() error {
 	// TODO: should return error if rover found an obstacle
 	d := r.GetDirection()
 	switch d {
-	case "N":
+	case 'N':
 		r.pos.y--
-	case "E":
+	case 'E':
 		r.pos.x++
-	case "S":
+	case 'S':
 		r.pos.y++
-	case "W":
+	case 'W':
 		r.pos.x--
 	}
 	return nil
@@ -42,13 +42,13 @@ func (r *Rover) MoveBackward() error {
 	// TODO: should return error if rover found an obstacle
 	d := r.GetDirection()
 	switch d {
-	case "N":
+	case 'N':
 		r.pos.y++
-	case "E":
+	case 'E':
 		r.pos.x--
-	case "S":
+	case 'S':
 		r.pos.y--
-	case "W":
+	case 'W':
 		r.pos.x++
 	}
 	return nil
@@ -57,28 +57,28 @@ func (r *Rover) MoveBackward() error {
 func (r *Rover) TurnLeft() {
 	d := r.GetDirection()
 	switch d {
-	case "N":
-		r.dir = "W"
-	case "W":
-		r.dir = "S"
-	case "S":
-		r.dir = "E"
-	case "E":
-		r.dir = "N"
+	case 'N':
+		r.dir = 'W'
+	case 'W':
+		r.dir = 'S'
+	case 'S':
+		r.dir = 'E'
+	case 'E':
+		r.dir = 'N'
 	}
 }
 
 func (r *Rover) TurnRight() {
 	d := r.GetDirection()
 	switch d {
-	case "N":
-		r.dir = "E"
-	case "E":
-		r.dir = "N"
-	case "S":
-		r.dir = "W"
-	case "W":
-		r.dir = "N"
+	case 'N':
+		r.dir = 'E'
+	case 'E':
+		r.dir = 'N'
+	case 'S':
+		r.dir = 'W'
+	case 'W':
+		r.dir = 'N'
 	}
 
 }

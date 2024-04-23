@@ -1,7 +1,5 @@
 package rover
 
-// TODO: should be private
-
 type Position struct {
 	x int
 	y int

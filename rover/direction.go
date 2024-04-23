@@ -1,11 +1,18 @@
 package rover
 
-//TODO: should be private
-//TODO: should have NewDirection function
-//TODO: should use runes instead of strings
+import (
+	"fmt"
+)
 
-type Direction string
+type Direction rune
 
 //    N
 //  W   E
 //    S
+
+func NewDirection(dir rune) (Direction, error) {
+	if dir != 'N' && dir != 'E' && dir != 'S' && dir != 'W' {
+		return Direction(0), fmt.Errorf("invalid direction: %v", dir)
+	}
+	return Direction(dir), nil
+}

@@ -11,7 +11,7 @@ func TestNewRover(t *testing.T) {
 	x := 1
 	y := 2
 	pos := Position{x, y}
-	dir := Direction("N")
+	dir := Direction('N')
 
 	// Act
 	r, _ := NewRover(x, y, dir)

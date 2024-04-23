@@ -11,7 +11,7 @@ func TestNewRover(t *testing.T) {
 	x := 1
 	y := 2
 	pos := rover.NewPosition(x, y)
-	dir := rover.Direction("N")
+	dir := rover.Direction('N')
 
 	// Act
 	r, _ := rover.NewRover(x, y, dir)
@@ -31,7 +31,7 @@ func TestMoveForward(t *testing.T) {
 	expectedY := 1
 	expectedPos := rover.NewPosition(expectedX, expectedY)
 
-	dir := rover.Direction("N")
+	dir := rover.Direction('N')
 	r, _ := rover.NewRover(x, y, dir)
 
 	// Act
@@ -52,7 +52,7 @@ func TestMoveBackward(t *testing.T) {
 	expectedY := 3
 	expectedPos := rover.NewPosition(expectedX, expectedY)
 
-	dir := rover.Direction("N")
+	dir := rover.Direction('N')
 	r, _ := rover.NewRover(x, y, dir)
 
 	// Act
@@ -69,8 +69,8 @@ func TestTurnLeft(t *testing.T) {
 	y := 2
 	pos := rover.NewPosition(x, y)
 
-	dir := rover.Direction("N")
-	expectedDir := rover.Direction("W")
+	dir := rover.Direction('N')
+	expectedDir := rover.Direction('W')
 	r, _ := rover.NewRover(x, y, dir)
 
 	// Act
@@ -87,8 +87,8 @@ func TestTurnRight(t *testing.T) {
 	y := 2
 	pos := rover.NewPosition(x, y)
 
-	dir := rover.Direction("N")
-	expectedDir := rover.Direction("E")
+	dir := rover.Direction('N')
+	expectedDir := rover.Direction('E')
 	r, _ := rover.NewRover(x, y, dir)
 
 	// Act
