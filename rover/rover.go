@@ -1,104 +1,109 @@
 package rover
 
 type Rover struct {
-	pos Position
-	dir Direction
+	pos  Position
+	dir  Direction
+	grid Grid
 }
 
 func NewRover(x int, y int, dir Direction) (Rover, error) {
 	// TODO: validate x, y, dir
 
 	pos := Position{x, y}
-	return Rover{pos, dir}, nil
+	return Rover{pos, dir, NewGrid()}, nil
 }
 
-func (r *Rover) GetPosition() Position {
+func (rover *Rover) GetPosition() Position {
 	// TODO: should return x and y as int
 
-	return r.pos
+	return rover.pos
 }
 
-func (r *Rover) GetDirection() Direction {
-	return r.dir
+func (rover *Rover) GetDirection() Direction {
+	return rover.dir
 }
 
-func (r *Rover) MoveForward() error {
+func (rover *Rover) MoveForward() error {
 	// TODO: should return error if rover found an obstacle
-	d := r.GetDirection()
+	d := rover.GetDirection()
+	var err error
 	switch d {
 	case 'N':
-		r.pos.y--
+		//rover.pos.y--
+		err = rover.moveNorth()
 	case 'E':
-		r.pos.x++
+		rover.pos.x++
 	case 'S':
-		r.pos.y++
+		rover.pos.y++
 	case 'W':
-		r.pos.x--
+		rover.pos.x--
 	}
-	return nil
+	return err
 }
 
-func (r *Rover) MoveBackward() error {
+func (rover *Rover) MoveBackward() error {
 	// TODO: should return error if rover found an obstacle
-	d := r.GetDirection()
+	var err error
+	d := rover.GetDirection()
 	switch d {
 	case 'N':
-		r.pos.y++
+		rover.pos.y++
 	case 'E':
-		r.pos.x--
+		rover.pos.x--
 	case 'S':
-		r.pos.y--
+		//rover.pos.y--
+		err = rover.moveNorth()
 	case 'W':
-		r.pos.x++
+		rover.pos.x++
 	}
-	return nil
+	return err
 }
 
-func (r *Rover) TurnLeft() {
-	d := r.GetDirection()
+func (rover *Rover) TurnLeft() {
+	d := rover.GetDirection()
 	switch d {
 	case 'N':
-		r.dir = 'W'
+		rover.dir = 'W'
 	case 'W':
-		r.dir = 'S'
+		rover.dir = 'S'
 	case 'S':
-		r.dir = 'E'
+		rover.dir = 'E'
 	case 'E':
-		r.dir = 'N'
-	}
-}
-
-func (r *Rover) TurnRight() {
-	d := r.GetDirection()
-	switch d {
-	case 'N':
-		r.dir = 'E'
-	case 'E':
-		r.dir = 'N'
-	case 'S':
-		r.dir = 'W'
-	case 'W':
-		r.dir = 'N'
+		rover.dir = 'N'
 	}
 }
 
-func (r *Rover) Run(commands string) error {
+func (rover *Rover) TurnRight() {
+	d := rover.GetDirection()
+	switch d {
+	case 'N':
+		rover.dir = 'E'
+	case 'E':
+		rover.dir = 'S'
+	case 'S':
+		rover.dir = 'W'
+	case 'W':
+		rover.dir = 'N'
+	}
+}
+
+func (rover *Rover) Run(commands string) error {
 	for _, c := range commands {
 		switch c {
 		case 'F':
-			err := r.MoveForward()
+			err := rover.MoveForward()
 			if err != nil {
 				return err
 			}
 		case 'B':
-			err := r.MoveBackward()
+			err := rover.MoveBackward()
 			if err != nil {
 				return err
 			}
 		case 'L':
-			r.TurnLeft()
+			rover.TurnLeft()
 		case 'R':
-			r.TurnRight()
+			rover.TurnRight()
 		}
 	}
 	return nil

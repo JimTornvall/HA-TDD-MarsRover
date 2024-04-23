@@ -16,3 +16,20 @@ func NewDirection(dir rune) (Direction, error) {
 	}
 	return Direction(dir), nil
 }
+
+func (d *Direction) Switch() {
+	switch *d {
+	case 'N':
+		*d = 'S'
+	case 'S':
+		*d = 'N'
+		//case 'E':
+		//	d = 'W'
+		//case 'W':
+		//	d = 'E'
+	}
+}
+
+func (d Direction) String() string {
+	return string(d)
+}

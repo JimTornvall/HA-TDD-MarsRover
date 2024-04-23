@@ -25,7 +25,6 @@ func TestMoveForward(t *testing.T) {
 	// Arrange
 	x := 1
 	y := 2
-	pos := rover.NewPosition(x, y)
 
 	expectedX := 1
 	expectedY := 1
@@ -38,7 +37,7 @@ func TestMoveForward(t *testing.T) {
 	_ = r.MoveForward()
 
 	// Assert
-	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", pos, r.GetPosition())
+	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
 	assert.Equal(t, dir, r.GetDirection(), "Expected dir to be %v, got %v", dir, r.GetDirection())
 }
 
@@ -101,12 +100,12 @@ func TestTurnRight(t *testing.T) {
 
 func TestRunCommands(t *testing.T) {
 	// Arrange
-	x := 1
-	y := 2
+	x := 2 //2 3 3
+	y := 1 //1 0 1
 	dir, _ := rover.NewDirection('N')
 
 	expectedDir := rover.Direction('N')
-	expectedPos := rover.NewPosition(2, 2)
+	expectedPos := rover.NewPosition(3, 1)
 	r, _ := rover.NewRover(x, y, dir)
 
 	commands := "FRFLB"
@@ -117,4 +116,45 @@ func TestRunCommands(t *testing.T) {
 	// Assert
 	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
 	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+}
+
+func TestRunCommands2(t *testing.T) {
+	// Arrange
+	x := 1
+	y := 2
+	dir, _ := rover.NewDirection('N')
+
+	expectedDir := rover.Direction('N')
+	expectedPos := rover.NewPosition(1, 2)
+	r, _ := rover.NewRover(x, y, dir)
+
+	commands := "FBFBLRLR"
+
+	// Act
+	_ = r.Run(commands)
+
+	// Assert
+	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+}
+
+func TestRunEdgeDetection(t *testing.T) {
+	// Arrange
+	x := 0 // 0 3 3
+	y := 1 // 0 0 1
+	dir, _ := rover.NewDirection('N')
+
+	expectedPos := rover.NewPosition(3, 1)
+	var expectedDir rover.Direction = 'S'
+	r, _ := rover.NewRover(x, y, dir)
+
+	commands := "FFF"
+
+	// Act
+	err := r.Run(commands)
+
+	// Assert
+	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+	assert.Nil(t, err, "Expected error to be nil")
 }
