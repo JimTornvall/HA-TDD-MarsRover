@@ -1,32 +1,5 @@
 package rover
 
-// ------------------------------
-// Position
-// TODO: should be private
-
-type Position struct {
-	x int
-	y int
-}
-
-func NewPosition(x int, y int) Position {
-	return Position{x, y}
-}
-
-// ------------------------------
-// Direction
-//TODO: should be private
-//TODO: should have NewDirection function
-
-type Direction string
-
-//    N
-//  E   W
-//    S
-
-// ------------------------------
-// Rover
-
 type Rover struct {
 	pos Position
 	dir Direction
@@ -56,11 +29,11 @@ func (r *Rover) MoveForward() error {
 	case "N":
 		r.pos.y--
 	case "E":
-		r.pos.x--
+		r.pos.x++
 	case "S":
 		r.pos.y++
 	case "W":
-		r.pos.x++
+		r.pos.x--
 	}
 	return nil
 }
@@ -72,13 +45,11 @@ func (r *Rover) MoveBackward() error {
 	case "N":
 		r.pos.y++
 	case "E":
-		r.pos.x++
+		r.pos.x--
 	case "S":
 		r.pos.y--
 	case "W":
-		r.pos.x--
+		r.pos.x++
 	}
 	return nil
 }
-
-// ------------------------------
