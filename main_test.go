@@ -62,3 +62,39 @@ func TestMoveBackward(t *testing.T) {
 	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", pos, r.GetPosition())
 	assert.Equal(t, dir, r.GetDirection(), "Expected dir to be %v, got %v", dir, r.GetDirection())
 }
+
+func TestTurnLeft(t *testing.T) {
+	// Arrange
+	x := 1
+	y := 2
+	pos := rover.NewPosition(x, y)
+
+	dir := rover.Direction("N")
+	expectedDir := rover.Direction("W")
+	r, _ := rover.NewRover(x, y, dir)
+
+	// Act
+	r.TurnLeft()
+
+	// Assert
+	assert.Equal(t, pos, r.GetPosition(), "Expected pos to be %v, got %v", pos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+}
+
+func TestTurnRight(t *testing.T) {
+	// Arrange
+	x := 1
+	y := 2
+	pos := rover.NewPosition(x, y)
+
+	dir := rover.Direction("N")
+	expectedDir := rover.Direction("E")
+	r, _ := rover.NewRover(x, y, dir)
+
+	// Act
+	r.TurnRight()
+
+	// Assert
+	assert.Equal(t, pos, r.GetPosition(), "Expected pos to be %v, got %v", pos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+}

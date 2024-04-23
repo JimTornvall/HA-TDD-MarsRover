@@ -53,3 +53,32 @@ func (r *Rover) MoveBackward() error {
 	}
 	return nil
 }
+
+func (r *Rover) TurnLeft() {
+	d := r.GetDirection()
+	switch d {
+	case "N":
+		r.dir = "W"
+	case "W":
+		r.dir = "S"
+	case "S":
+		r.dir = "E"
+	case "E":
+		r.dir = "N"
+	}
+}
+
+func (r *Rover) TurnRight() {
+	d := r.GetDirection()
+	switch d {
+	case "N":
+		r.dir = "E"
+	case "E":
+		r.dir = "N"
+	case "S":
+		r.dir = "W"
+	case "W":
+		r.dir = "N"
+	}
+
+}
