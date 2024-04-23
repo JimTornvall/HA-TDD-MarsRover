@@ -29,14 +29,13 @@ func (rover *Rover) MoveForward() error {
 	var err error
 	switch d {
 	case 'N':
-		//rover.pos.y--
 		err = rover.moveNorth()
 	case 'E':
-		rover.pos.x++
+		err = rover.moveEast()
 	case 'S':
-		rover.pos.y++
+		err = rover.moveSouth()
 	case 'W':
-		rover.pos.x--
+		err = rover.moveWest()
 	}
 	return err
 }
@@ -47,14 +46,13 @@ func (rover *Rover) MoveBackward() error {
 	d := rover.GetDirection()
 	switch d {
 	case 'N':
-		rover.pos.y++
+		err = rover.moveSouth()
 	case 'E':
-		rover.pos.x--
+		err = rover.moveWest()
 	case 'S':
-		//rover.pos.y--
 		err = rover.moveNorth()
 	case 'W':
-		rover.pos.x++
+		err = rover.moveEast()
 	}
 	return err
 }

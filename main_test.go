@@ -138,7 +138,7 @@ func TestRunCommands2(t *testing.T) {
 	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
 }
 
-func TestRunEdgeDetection(t *testing.T) {
+func TestRunEdgeDetectionNorth(t *testing.T) {
 	// Arrange
 	x := 0 // 0 3 3
 	y := 1 // 0 0 1
@@ -149,6 +149,69 @@ func TestRunEdgeDetection(t *testing.T) {
 	r, _ := rover.NewRover(x, y, dir)
 
 	commands := "FFF"
+
+	// Act
+	err := r.Run(commands)
+
+	// Assert
+	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+	assert.Nil(t, err, "Expected error to be nil")
+}
+
+func TestRunEdgeDetectionSouth(t *testing.T) {
+	// Arrange
+	x := 2                  //
+	y := rover.GridMaxY - 1 //
+	dir, _ := rover.NewDirection('N')
+
+	expectedPos := rover.NewPosition(5, 4)
+	var expectedDir rover.Direction = 'S'
+	r, _ := rover.NewRover(x, y, dir)
+
+	commands := "BBB"
+
+	// Act
+	err := r.Run(commands)
+
+	// Assert
+	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+	assert.Nil(t, err, "Expected error to be nil")
+}
+
+func TestRunEdgeDetectionEast(t *testing.T) {
+	// Arrange
+	x := rover.GridMaxX - 1
+	y := 2
+	dir, _ := rover.NewDirection('E')
+
+	expectedPos := rover.NewPosition(1, 2)
+	var expectedDir rover.Direction = 'E'
+	r, _ := rover.NewRover(x, y, dir)
+
+	commands := "FFF"
+
+	// Act
+	err := r.Run(commands)
+
+	// Assert
+	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+	assert.Nil(t, err, "Expected error to be nil")
+}
+
+func TestRunEdgeDetectionWest(t *testing.T) {
+	// Arrange
+	x := 1
+	y := 2
+	dir, _ := rover.NewDirection('E')
+
+	expectedPos := rover.NewPosition(4, 2)
+	var expectedDir rover.Direction = 'E'
+	r, _ := rover.NewRover(x, y, dir)
+
+	commands := "BBB"
 
 	// Act
 	err := r.Run(commands)

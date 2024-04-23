@@ -23,10 +23,10 @@ func (d *Direction) Switch() {
 		*d = 'S'
 	case 'S':
 		*d = 'N'
-		//case 'E':
-		//	d = 'W'
-		//case 'W':
-		//	d = 'E'
+	case 'E':
+		*d = 'W'
+	case 'W':
+		*d = 'E'
 	}
 }
 
