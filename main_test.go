@@ -98,3 +98,23 @@ func TestTurnRight(t *testing.T) {
 	assert.Equal(t, pos, r.GetPosition(), "Expected pos to be %v, got %v", pos, r.GetPosition())
 	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
 }
+
+func TestRunCommands(t *testing.T) {
+	// Arrange
+	x := 1
+	y := 2
+	dir, _ := rover.NewDirection('N')
+
+	expectedDir := rover.Direction('N')
+	expectedPos := rover.NewPosition(2, 2)
+	r, _ := rover.NewRover(x, y, dir)
+
+	commands := "FRFLB"
+
+	// Act
+	_ = r.Run(commands)
+
+	// Assert
+	assert.Equal(t, expectedPos, r.GetPosition(), "Expected pos to be %v, got %v", expectedPos, r.GetPosition())
+	assert.Equal(t, expectedDir, r.GetDirection(), "Expected dir to be %v, got %v", expectedDir, r.GetDirection())
+}

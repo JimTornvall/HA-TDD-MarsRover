@@ -80,5 +80,26 @@ func (r *Rover) TurnRight() {
 	case 'W':
 		r.dir = 'N'
 	}
+}
 
+func (r *Rover) Run(commands string) error {
+	for _, c := range commands {
+		switch c {
+		case 'F':
+			err := r.MoveForward()
+			if err != nil {
+				return err
+			}
+		case 'B':
+			err := r.MoveBackward()
+			if err != nil {
+				return err
+			}
+		case 'L':
+			r.TurnLeft()
+		case 'R':
+			r.TurnRight()
+		}
+	}
+	return nil
 }
